@@ -1,133 +1,291 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" >
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+
     <title>World Explorer</title>
 </head>
+
 <body>
-    <header class="w-full bg-[#071A2F] p-2 border-b border-[#263C50] sticky top-0 z-1">
+
+    <!-- Header -->
+
+    <header class="w-full bg-[#071A2F] p-2 border-b border-[#263C50] sticky top-0 z-10">
+
         <div class="max-w-7xl m-auto flex justify-between items-center">
+
             <div class="flex items-center gap-2">
-                <img src="images\logo.png" alt="" class="logo w-[50px] h-[50px]">
+
+                <img src="images/logo.png" alt="World Explorer Logo" class="logo w-[50px] h-[50px]">
+
                 <div class="leading-[18px]">
-                    <h1 class="text-2xl font-bold bg-gradient-to-r from-sky-400 to-sky-200 bg-clip-text text-transparent font-[Poppins]">World Explorer</h1>
-                    <p class="font-['Inter'] text-[10px] font-semibold uppercase tracking-[4px] text-gray-400">Discover Every Nation</p>
+
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-sky-400 to-sky-200 bg-clip-text text-transparent font-[Poppins]">
+                        World Explorer
+                    </h1>
+
+                    <p class="font-['Inter'] text-[10px] font-semibold uppercase tracking-[4px] text-gray-400">
+                        Discover Every Nation
+                    </p>
+
                 </div>
-            </div>
-        <nav class="font-['Inter'] text-sm font-medium text-sky-300 flex gap-5">
-            <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-b-2 transition-all duration-300 " href="">Explore</a>
-            <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-b-2 transition-all duration-300" href="">Continents</a>
-            <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-b-2 transition-all duration-300" href="">Favorites</a>
-            <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-b-2 transition-all duration-300" href="">Compare</a>
-        </nav>
-        <div class="flex items-center gap-4">
-            <div class="flex items-center gap-3 bg-[#112240] border border-[#263C59] rounded-full px-4 py-2 focus-within:border-sky-400 transition-colors duration-300">
-                <input id="search_input" type="text" placeholder="Search countries..." class="w-48 bg-transparent text-sm text-white placeholder:text-slate-400 outline-none">
-                <i id="search_btn" class="fa-solid fa-magnifying-glass text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
+
             </div>
 
-            <i class="fa-regular fa-moon text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
-            <i class="fa-solid fa-bars-staggered text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
+
+            <nav class="font-['Inter'] text-sm font-medium text-sky-300 flex gap-5">
+
+                <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-sky-500 transition-all duration-300" href="#">
+                    Explore
+                </a>
+
+                <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-sky-500 transition-all duration-300" href="#">
+                    Continents
+                </a>
+
+                <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-sky-500 transition-all duration-300" href="#">
+                    Favorites
+                </a>
+
+                <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-sky-500 transition-all duration-300" href="#">
+                    Compare
+                </a>
+
+            </nav>
+
+
+            <div class="flex items-center gap-4">
+
+                <div class="flex items-center gap-3 bg-[#112240] border border-[#263C59] rounded-full px-4 py-2 focus-within:border-sky-400 transition-colors duration-300">
+
+                    <input
+                        id="search_input"
+                        type="text"
+                        placeholder="Search countries..."
+                        class="w-48 bg-transparent text-sm text-white placeholder:text-slate-400 outline-none"
+                    >
+
+                    <i
+                        id="search_btn"
+                        class="fa-solid fa-magnifying-glass text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"
+                    ></i>
+
+                </div>
+
+                <i class="fa-regular fa-moon text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
+
+                <i class="fa-solid fa-bars-staggered text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
+
+            </div>
+
         </div>
-        </div>
+
     </header>
 
 
+    <!-- Hero Section -->
+
     <section class="w-full bg-[#071A2F] py-15">
+
         <div class="max-w-7xl mx-auto px-6 flex justify-between">
+
             <div class="py-15">
-                <span class="font-['Inter'] font-semibold text-[#38BDF8] text-[14px] tracking-[4px]">DISCOVER THE WORLD</span>
-            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#F1F7FC] text-[48px]">Explore the World, <br>One Country at a Time.</h2>
-            
-            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#CBD5E1] text-[16px]">Discover countries, explore diverse cultures, and uncover fascinating facts about our world. Your journey to explore every nation starts here.</p>
-            
-            <div class="mt-8 flex items-center gap-4">
-                <button class="font-['Inter'] font-semibold bg-[#38BDF8] text-[#071A2F] text-[16px] px-6 py-3 rounded-lg transition-colors duration-300 hover:bg-[#BAE6FD]">Explore Countries</button>
-                <button class="font-['Inter'] font-semibold bg-transparent text-[#BAE6FD] text-[16px] px-6 py-3 rounded-lg border border-[#38BDF8] transition-colors duration-300 hover:bg-[#38BDF8] hover:text-[#071A2F]">Discover More</button>
+
+                <span class="font-['Inter'] font-semibold text-[#38BDF8] text-[14px] tracking-[4px]">
+                    DISCOVER THE WORLD
+                </span>
+
+                <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#F1F7FC] text-[48px]">
+                    Explore the World, <br>One Country at a Time.
+                </h2>
+
+                <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#CBD5E1] text-[16px]">
+                    Discover countries, explore diverse cultures, and uncover fascinating facts about our world. Your journey to explore every nation starts here.
+                </p>
+
+                <div class="mt-8 flex items-center gap-4">
+
+                    <button class="font-['Inter'] font-semibold bg-[#38BDF8] text-[#071A2F] text-[16px] px-6 py-3 rounded-lg transition-colors duration-300 hover:bg-[#BAE6FD]">
+                        Explore Countries
+                    </button>
+
+                    <button class="font-['Inter'] font-semibold bg-transparent text-[#BAE6FD] text-[16px] px-6 py-3 rounded-lg border border-[#38BDF8] transition-colors duration-300 hover:bg-[#38BDF8] hover:text-[#071A2F]">
+                        Discover More
+                    </button>
+
+                </div>
+
             </div>
+
+
+            <div>
+
+                <img
+                    class="w-[500px] rounded-xl hover:shadow-[0_0_25px_rgba(34,211,238,0.2)] transition-all duration-300"
+                    src="images/heroimg.png"
+                    alt="World Explorer"
+                >
+
             </div>
-            <div >
-                <img class="w-[500px] rounded-xl hover:shadow-[0_0_25px_rgba(34,211,238,0.2)] transition-all duration-300" src="images\heroimg.png" alt="">
-            </div>
+
         </div>
+
     </section>
+
+
+    <!-- Statistics Section -->
 
     <section class="w-full bg-[#0B2239] py-15">
+
         <div class="max-w-7xl grid grid-cols-4 gap-[24px] m-auto">
-            <div class="bg-[#12304A] border-[git status#263C50] p-[24px] rounded-[12px]">
+
+            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+
                 <i class="fa-solid fa-globe text-[#38BDF8]"></i>
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-700 counter" data-target="195">0</h3>
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-400">Countries</p>
+
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold counter" data-target="195">
+                    0
+                </h3>
+
+                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                    Countries
+                </p>
+
             </div>
-            <div class="bg-[#12304A] border-[##263C50] p-[24px] rounded-[12px]">
+
+
+            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+
                 <i class="fa-solid fa-earth-europe text-[#38BDF8]"></i>
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-700 counter" data-target="7">0</h3>
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-400">Continents</p>
+
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold counter" data-target="7">
+                    0
+                </h3>
+
+                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                    Continents
+                </p>
+
             </div>
-            <div class="bg-[#12304A] border-[##263C50] p-[24px] rounded-[12px]">
+
+
+            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+
                 <i class="fa-solid fa-language text-[#38BDF8]"></i>
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-700 counter" data-target="7,000">0</h3>
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-400">Languages</p>
+
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold counter" data-target="7,000">
+                    0
+                </h3>
+
+                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                    Languages
+                </p>
+
             </div>
-            <div class="bg-[#12304A] border-[##263C50] p-[24px] rounded-[12px]">
+
+
+            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+
                 <i class="fa-solid fa-map text-[#38BDF8]"></i>
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-700">Explore</h3>
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-400">Our World</p>
+
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold">
+                    Explore
+                </h3>
+
+                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                    Our World
+                </p>
+
             </div>
+
         </div>
+
     </section>
-    
-    
+
+
+    <!-- Countries Section -->
+
     <section class="w-full bg-[#F1F7FC] py-16">
+
         <div class="max-w-7xl m-auto px-6">
-            <span class="font-['Inter'] font-semibold text-[#0284C7] text-sm tracking-[4px]">WONDERS OF OUR PLANET</span>
-            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#071A2F] text-[48px]">Discover the World's Greatest Wonders</h2>
-            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#526579] text-[16px]">Explore the iconic landmarks, breathtaking architecture, and extraordinary places that make our world truly remarkable.</p>
-            
 
-            <div id="country_skeleton" class="grid grid-cols-3 gap-6 max-w-7xl m-auto mt-10"></div>
-            <div class="grid grid-cols-3 gap-6 mt-10" id="API_data"></div>
+            <span class="font-['Inter'] font-semibold text-[#0284C7] text-sm tracking-[4px]">
+                WONDERS OF OUR PLANET
+            </span>
 
+            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#071A2F] text-[48px]">
+                Discover the World's Greatest Wonders
+            </h2>
+
+            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#526579] text-[16px]">
+                Explore the iconic landmarks, breathtaking architecture, and extraordinary places that make our world truly remarkable.
+            </p>
+
+
+            <div
+                id="country_skeleton"
+                class="grid grid-cols-3 gap-6 max-w-7xl m-auto mt-10"
+            ></div>
+
+
+            <div
+                class="grid grid-cols-3 gap-6 mt-10"
+                id="API_data"
+            ></div>
 
         </div>
+
     </section>
+
+
+    <!-- Continents Section -->
 
     <section class="w-full bg-[#071A2F] py-16">
+
         <div class="max-w-7xl m-auto px-6 text-center">
-            <span class="font-['Inter'] font-semibold text-[#38BDF8] text-sm tracking-[4px]">EXPLORE OUR WORLD</span>
-            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#FFFFFF] text-[48px]">Explore by <span class="text-[#38BDF8]">Continent</span></h2>
-            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#94A3B8] text-[16px] m-auto">From ancient wonders to breathtaking landscapes, discover the unique cultures and destinations that make every continent extraordinary.</p>
-            
+
+            <span class="font-['Inter'] font-semibold text-[#38BDF8] text-sm tracking-[4px]">
+                EXPLORE OUR WORLD
+            </span>
+
+            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#FFFFFF] text-[48px]">
+                Explore by <span class="text-[#38BDF8]">Continent</span>
+            </h2>
+
+            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#94A3B8] text-[16px] m-auto">
+                From ancient wonders to breathtaking landscapes, discover the unique cultures and destinations that make every continent extraordinary.
+            </p>
+
             <div class="w-full max-w-6xl h-[490px]">
 
             </div>
+
         </div>
+
     </section>
 
 
+    <!-- Country Details -->
+
+    <div id="country_details" class="hidden"></div>
 
 
-    <!-- <section class="w-full bg-[#071A2F] py-15">
-        <div class="max-w-7xl mx-auto ">
-                <span class="font-['Inter'] font-semibold text-[#38BDF8] text-[14px] tracking-[4px]">DISCOVER OUR PLANET</span>
-                <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#F1F7FC] text-[48px]">The World at Your Fingertips</h2>
-            
-            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#CBD5E1] text-[16px]">Navigate across the globe, explore countries, and uncover fascinating insights about the places that make our world unique.</p>
-        </div>
+    <!-- JavaScript -->
 
-        
-    </section> -->
+    <script src="script.js"></script>
 
-<script src="script.js"></script>
 </body>
 </html>
