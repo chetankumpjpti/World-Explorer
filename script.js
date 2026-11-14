@@ -1,4 +1,3 @@
-
 // Animated Counter
 
 const Counters = document.querySelectorAll(".counter");
@@ -31,13 +30,18 @@ const searchInput = document.querySelector("#search_input");
 const searchBtn = document.querySelector("#search_btn");
 
 const detailsContainer = document.querySelector("#country_details");
+const favoritesData = document.querySelector("#favorites_data");
 
 let countries = [];
+
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 
 // Show Skeleton Loading
 
 function showSkeleton() {
+
+    if (!skeletonContainer) return;
 
     skeletonContainer.innerHTML = "";
 
@@ -66,21 +70,28 @@ function showSkeleton() {
 
 // Display Country Cards
 
-function displayCountries(countryList) {
+function displayCountries(countryList, container = API_data) {
 
-    API_data.innerHTML = "";
+    if (!container) return;
+
+    container.innerHTML = "";
 
     if (countryList.length === 0) {
 
-        API_data.innerHTML = `
+        container.innerHTML = `
             <div class="col-span-3 text-center py-12">
 
                 <h2 class="text-2xl font-bold text-[#071A2F]">
-                    Country Not Found
+                    ${container === favoritesData
+                        ? "No Favorite Countries Yet"
+                        : "Country Not Found"}
                 </h2>
 
                 <p class="text-slate-500 mt-2">
-                    Please try another country name.
+                    ${container === favoritesData
+                        ? "Like a country to add it to your favorites."
+                        : "Please try another country name."
+                    }
                 </p>
 
             </div>
@@ -90,6 +101,10 @@ function displayCountries(countryList) {
     }
 
     for (const country of countryList) {
+
+        const countryId = country.cca2 || country.code || country.names?.common;
+
+        const isFavorite = favorites.includes(countryId);
 
         const div = document.createElement("div");
 
@@ -118,9 +133,9 @@ function displayCountries(countryList) {
 
                 <button
                     type="button"
-                    class="like_btn absolute top-3 right-3 w-10 h-10 bg-white rounded-full shadow-md text-xl text-slate-500 hover:text-rose-500 transition-colors duration-300"
+                    class="like_btn absolute top-3 right-3 w-10 h-10 bg-white rounded-full shadow-md text-xl ${isFavorite ? "text-rose-500" : "text-slate-500"} hover:text-rose-500 transition-colors duration-300"
                 >
-                    ♡
+                    ${isFavorite ? "♥" : "♡"}
                 </button>
 
             </div>
@@ -170,7 +185,19 @@ function displayCountries(countryList) {
 
         likeBtn.addEventListener("click", function () {
 
-            if (likeBtn.innerHTML.trim() === "♡") {
+            if (favorites.includes(countryId)) {
+
+                favorites = favorites.filter(id => id !== countryId);
+
+            } else {
+
+                favorites.push(countryId);
+
+            }
+
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+
+            if (favorites.includes(countryId)) {
 
                 likeBtn.innerHTML = "♥";
 
@@ -183,6 +210,14 @@ function displayCountries(countryList) {
 
                 likeBtn.classList.remove("text-rose-500");
                 likeBtn.classList.add("text-slate-500");
+
+            }
+
+            // Refresh Favorites Page
+
+            if (container === favoritesData) {
+
+                displayFavorites();
 
             }
 
@@ -199,9 +234,28 @@ function displayCountries(countryList) {
 
         });
 
-        API_data.append(div);
+        container.append(div);
 
     }
+
+}
+
+
+// Display Favorite Countries
+
+function displayFavorites() {
+
+    if (!favoritesData) return;
+
+    const favoriteCountries = countries.filter(country => {
+
+        const countryId = country.cca2 || country.code || country.names?.common;
+
+        return favorites.includes(countryId);
+
+    });
+
+    displayCountries(favoriteCountries, favoritesData);
 
 }
 
@@ -209,6 +263,8 @@ function displayCountries(countryList) {
 // Show Country Details
 
 function showCountryDetails(country) {
+
+    if (!detailsContainer) return;
 
     // Hide Main Page
 
@@ -242,17 +298,26 @@ function showCountryDetails(country) {
 
     const flag = country.flag?.url_svg || "";
 
-   const nativeName = country.names?.native
-    ? Object.values(country.names.native)
-        .map(name => name.common || name.official)
-        .join(", ")
-    : "Not Available";
+
+    // Native Name
+
+    const nativeName = country.names?.native
+        ? Object.values(country.names.native)
+            .map(name => name.common || name.official)
+            .join(", ")
+        : "Not Available";
+
+
+    // Languages
 
     const languages = country.languages
         ? Object.values(country.languages).map(lang =>
             typeof lang === "string" ? lang : lang.name || "Unknown"
         ).join(", ")
         : "Not Available";
+
+
+    // Currencies
 
     const currencies = country.currencies
         ? Object.values(country.currencies).map(currency =>
@@ -261,6 +326,7 @@ function showCountryDetails(country) {
                 : `${currency.name || "Unknown"} (${currency.symbol || ""})`
         ).join(", ")
         : "Not Available";
+
 
     const borders = country.borders || [];
 
@@ -293,7 +359,6 @@ function showCountryDetails(country) {
         <section class="w-full min-h-screen bg-[#F1F7FC] py-8">
 
             <div class="max-w-6xl mx-auto px-6">
-
 
                 <!-- Back Button -->
 
@@ -670,7 +735,9 @@ async function apiHandler() {
 
     showSkeleton();
 
-    API_data.innerHTML = "";
+    if (API_data) {
+        API_data.innerHTML = "";
+    }
 
     try {
 
@@ -679,7 +746,7 @@ async function apiHandler() {
             {
                 headers: {
 
-                    "Authorization": "Bearer rc_live_cbafff3a94e448d0869bca1df9639ba7"
+                     "Authorization": "Bearer rc_live_cbafff3a94e448d0869bca1df9639ba7"
 
                 }
             }
@@ -708,7 +775,13 @@ async function apiHandler() {
         }
 
 
-        displayCountries(countries);
+        if (API_data) {
+
+            displayCountries(countries);
+
+        }
+
+        displayFavorites();
 
 
     } catch (error) {
@@ -716,7 +789,9 @@ async function apiHandler() {
         console.error("Error:", error);
 
 
-        API_data.innerHTML = `
+        if (API_data) {
+
+            API_data.innerHTML = `
 
             <div class="col-span-3 flex flex-col items-center justify-center text-center bg-white border border-slate-200 rounded-2xl px-8 py-14 shadow-sm">
 
@@ -752,19 +827,24 @@ async function apiHandler() {
 
             </div>
 
-        `;
+            `;
 
+            document.querySelector("#retry_btn").addEventListener("click", function () {
 
-        document.querySelector("#retry_btn").addEventListener("click", function () {
+                apiHandler();
 
-            apiHandler();
+            });
 
-        });
+        }
 
 
     } finally {
 
-        skeletonContainer.innerHTML = "";
+        if (skeletonContainer) {
+
+            skeletonContainer.innerHTML = "";
+
+        }
 
     }
 
@@ -774,6 +854,8 @@ async function apiHandler() {
 // Search Countries
 
 function searchCountries() {
+
+    if (!searchInput || !API_data) return;
 
     const searchValue = searchInput.value.trim().toLowerCase();
 
@@ -792,20 +874,24 @@ function searchCountries() {
 }
 
 
-searchBtn.addEventListener("click", searchCountries);
+if (searchBtn && searchInput) {
+
+    searchBtn.addEventListener("click", searchCountries);
 
 
-// Search on Enter Key
+    // Search on Enter Key
 
-searchInput.addEventListener("keydown", function (event) {
+    searchInput.addEventListener("keydown", function (event) {
 
-    if (event.key === "Enter") {
+        if (event.key === "Enter") {
 
-        searchCountries();
+            searchCountries();
 
-    }
+        }
 
-});
+    });
+
+}
 
 
 // Call API
