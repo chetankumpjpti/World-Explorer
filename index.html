@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,21 +24,23 @@
 
     <!-- Header -->
 
-    <header class="w-full bg-[#071A2F] p-2 border-b border-[#263C50] sticky top-0 z-10">
+    <header class="w-full bg-[#071A2F] p-3 sm:p-2 border-b border-[#263C50] sticky top-0 z-50">
 
-        <div class="max-w-7xl m-auto flex justify-between items-center">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+
+            <!-- Logo -->
 
             <div class="flex items-center gap-2">
 
-                <img src="images/logo.png" alt="World Explorer Logo" class="logo w-[50px] h-[50px]">
+                <img src="images/logo.png" alt="World Explorer Logo" class="w-10 h-10 sm:w-[50px] sm:h-[50px]">
 
                 <div class="leading-[18px]">
 
-                    <h1 class="text-2xl font-bold bg-gradient-to-r from-sky-400 to-sky-200 bg-clip-text text-transparent font-[Poppins]">
+                    <h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-sky-400 to-sky-200 bg-clip-text text-transparent font-[Poppins]">
                         World Explorer
                     </h1>
 
-                    <p class="font-['Inter'] text-[10px] font-semibold uppercase tracking-[4px] text-gray-400">
+                    <p class="font-['Inter'] text-[9px] sm:text-[10px] font-semibold uppercase tracking-[3px] sm:tracking-[4px] text-gray-400">
                         Discover Every Nation
                     </p>
 
@@ -46,7 +49,10 @@
             </div>
 
 
-            <nav class="font-['Inter'] text-sm font-medium text-sky-300 flex gap-5">
+            <!-- Navigation -->
+
+            <nav id="mobile_nav"
+                class="hidden flex-col order-3 w-full items-center justify-center gap-4 py-3 font-['Inter'] text-xs sm:text-sm font-medium text-sky-300 lg:order-none lg:flex lg:w-auto lg:flex-row lg:gap-5 lg:py-0">
 
                 <a class="border-b-2 border-transparent hover:text-sky-500 hover:border-sky-500 transition-all duration-300" href="#">
                     Explore
@@ -67,27 +73,34 @@
             </nav>
 
 
-            <div class="flex items-center gap-4">
+            <!-- Search and Icons -->
 
-                <div class="flex items-center gap-3 bg-[#112240] border border-[#263C59] rounded-full px-4 py-2 focus-within:border-sky-400 transition-colors duration-300">
+            <div class="flex items-center gap-3 sm:gap-4">
+
+                <div class="flex items-center gap-2 sm:gap-3 bg-[#112240] border border-[#263C59] rounded-full px-3 sm:px-4 py-2 focus-within:border-sky-400 transition-colors duration-300">
 
                     <input
                         id="search_input"
                         type="text"
                         placeholder="Search countries..."
-                        class="w-48 bg-transparent text-sm text-white placeholder:text-slate-400 outline-none"
+                        class="w-24 sm:w-36 md:w-40 lg:w-48 bg-transparent text-xs sm:text-sm text-white placeholder:text-slate-400 outline-none"
                     >
 
                     <i
                         id="search_btn"
-                        class="fa-solid fa-magnifying-glass text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"
+                        class="fa-solid fa-magnifying-glass text-sky-400 text-base sm:text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"
                     ></i>
 
                 </div>
 
                 <i class="fa-regular fa-moon text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
 
-                <i class="fa-solid fa-bars-staggered text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300"></i>
+                <!-- Mobile Menu Button -->
+
+                <i
+                    id="menu_btn"
+                    class="fa-solid fa-bars-staggered text-sky-400 text-lg cursor-pointer hover:text-sky-200 transition-colors duration-300 lg:hidden"
+                ></i>
 
             </div>
 
@@ -98,31 +111,31 @@
 
     <!-- Hero Section -->
 
-    <section class="w-full bg-[#071A2F] py-15">
+    <section class="w-full bg-[#071A2F] py-10 sm:py-15">
 
-        <div class="max-w-7xl mx-auto px-6 flex justify-between">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-10">
 
-            <div class="py-15">
+            <div class="py-5 sm:py-10 md:py-15 w-full md:w-1/2">
 
-                <span class="font-['Inter'] font-semibold text-[#38BDF8] text-[14px] tracking-[4px]">
+                <span class="font-['Inter'] font-semibold text-[#38BDF8] text-xs sm:text-[14px] tracking-[3px] sm:tracking-[4px]">
                     DISCOVER THE WORLD
                 </span>
 
-                <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#F1F7FC] text-[48px]">
+                <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#F1F7FC] text-3xl sm:text-4xl lg:text-[48px]">
                     Explore the World, <br>One Country at a Time.
                 </h2>
 
-                <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#CBD5E1] text-[16px]">
+                <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#CBD5E1] text-sm sm:text-base">
                     Discover countries, explore diverse cultures, and uncover fascinating facts about our world. Your journey to explore every nation starts here.
                 </p>
 
-                <div class="mt-8 flex items-center gap-4">
+                <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
 
-                    <button class="font-['Inter'] font-semibold bg-[#38BDF8] text-[#071A2F] text-[16px] px-6 py-3 rounded-lg transition-colors duration-300 hover:bg-[#BAE6FD]">
+                    <button class="font-['Inter'] font-semibold bg-[#38BDF8] text-[#071A2F] text-sm sm:text-base px-5 sm:px-6 py-3 rounded-lg transition-colors duration-300 hover:bg-[#BAE6FD]">
                         Explore Countries
                     </button>
 
-                    <button class="font-['Inter'] font-semibold bg-transparent text-[#BAE6FD] text-[16px] px-6 py-3 rounded-lg border border-[#38BDF8] transition-colors duration-300 hover:bg-[#38BDF8] hover:text-[#071A2F]">
+                    <button class="font-['Inter'] font-semibold bg-transparent text-[#BAE6FD] text-sm sm:text-base px-5 sm:px-6 py-3 rounded-lg border border-[#38BDF8] transition-colors duration-300 hover:bg-[#38BDF8] hover:text-[#071A2F]">
                         Discover More
                     </button>
 
@@ -131,10 +144,10 @@
             </div>
 
 
-            <div>
+            <div class="w-full md:w-1/2">
 
                 <img
-                    class="w-[500px] rounded-xl hover:shadow-[0_0_25px_rgba(34,211,238,0.2)] transition-all duration-300"
+                    class="w-full max-w-[500px] mx-auto rounded-xl hover:shadow-[0_0_25px_rgba(34,211,238,0.2)] transition-all duration-300"
                     src="images/heroimg.png"
                     alt="World Explorer"
                 >
@@ -148,64 +161,64 @@
 
     <!-- Statistics Section -->
 
-    <section class="w-full bg-[#0B2239] py-15">
+    <section class="w-full bg-[#0B2239] py-10 sm:py-15">
 
-        <div class="max-w-7xl grid grid-cols-4 gap-[24px] m-auto">
+        <div class="max-w-7xl px-5 sm:px-6 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
 
-            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+            <div class="bg-[#12304A] border border-[#263C50] p-5 sm:p-6 rounded-xl">
 
                 <i class="fa-solid fa-globe text-[#38BDF8]"></i>
 
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold counter" data-target="195">
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-3xl sm:text-[32px] font-bold counter" data-target="195">
                     0
                 </h3>
 
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                <p class="text-[#A9B7CC] font-['Inter'] text-sm font-normal">
                     Countries
                 </p>
 
             </div>
 
 
-            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+            <div class="bg-[#12304A] border border-[#263C50] p-5 sm:p-6 rounded-xl">
 
                 <i class="fa-solid fa-earth-europe text-[#38BDF8]"></i>
 
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold counter" data-target="7">
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-3xl sm:text-[32px] font-bold counter" data-target="7">
                     0
                 </h3>
 
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                <p class="text-[#A9B7CC] font-['Inter'] text-sm font-normal">
                     Continents
                 </p>
 
             </div>
 
 
-            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+            <div class="bg-[#12304A] border border-[#263C50] p-5 sm:p-6 rounded-xl">
 
                 <i class="fa-solid fa-language text-[#38BDF8]"></i>
 
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold counter" data-target="7,000">
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-3xl sm:text-[32px] font-bold counter" data-target="7,000">
                     0
                 </h3>
 
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                <p class="text-[#A9B7CC] font-['Inter'] text-sm font-normal">
                     Languages
                 </p>
 
             </div>
 
 
-            <div class="bg-[#12304A] border border-[#263C50] p-[24px] rounded-[12px]">
+            <div class="bg-[#12304A] border border-[#263C50] p-5 sm:p-6 rounded-xl">
 
                 <i class="fa-solid fa-map text-[#38BDF8]"></i>
 
-                <h3 class="text-[#F1F7FC] font-['Poppins'] text-[32px] font-bold">
+                <h3 class="text-[#F1F7FC] font-['Poppins'] text-3xl sm:text-[32px] font-bold">
                     Explore
                 </h3>
 
-                <p class="text-[#A9B7CC] font-['Inter'] text-[14px] font-normal">
+                <p class="text-[#A9B7CC] font-['Inter'] text-sm font-normal">
                     Our World
                 </p>
 
@@ -218,31 +231,31 @@
 
     <!-- Countries Section -->
 
-    <section class="w-full bg-[#F1F7FC] py-16">
+    <section class="w-full bg-[#F1F7FC] py-10 sm:py-16">
 
-        <div class="max-w-7xl m-auto px-6">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6">
 
-            <span class="font-['Inter'] font-semibold text-[#0284C7] text-sm tracking-[4px]">
+            <span class="font-['Inter'] font-semibold text-[#0284C7] text-xs sm:text-sm tracking-[3px] sm:tracking-[4px]">
                 WONDERS OF OUR PLANET
             </span>
 
-            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#071A2F] text-[48px]">
+            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#071A2F] text-3xl sm:text-4xl lg:text-[48px]">
                 Discover the World's Greatest Wonders
             </h2>
 
-            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#526579] text-[16px]">
+            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#526579] text-sm sm:text-base">
                 Explore the iconic landmarks, breathtaking architecture, and extraordinary places that make our world truly remarkable.
             </p>
 
 
             <div
                 id="country_skeleton"
-                class="grid grid-cols-3 gap-6 max-w-7xl m-auto mt-10"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 max-w-7xl mx-auto mt-8 sm:mt-10"
             ></div>
 
 
             <div
-                class="grid grid-cols-3 gap-6 mt-10"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-8 sm:mt-10"
                 id="API_data"
             ></div>
 
@@ -251,234 +264,209 @@
     </section>
 
 
-    <!-- Continents Section -->
-
-    <section class="w-full bg-[#071A2F] py-16">
-
-        <div class="max-w-7xl m-auto px-6 text-center">
-
-            <span class="font-['Inter'] font-semibold text-[#38BDF8] text-sm tracking-[4px]">
-                EXPLORE OUR WORLD
-            </span>
-
-            <h2 class="mt-5 font-['Poppins'] leading-tight font-bold text-[#FFFFFF] text-[48px]">
-                Explore by <span class="text-[#38BDF8]">Continent</span>
-            </h2>
-
-            <p class="mt-6 max-w-xl leading-7 font-['Inter'] font-normal text-[#94A3B8] text-[16px] m-auto">
-                From ancient wonders to breathtaking landscapes, discover the unique cultures and destinations that make every continent extraordinary.
-            </p>
-
-            <div class="w-full max-w-6xl h-[490px]">
-
-            </div>
-
-        </div>
-
-    </section>
-
-<!-- Footer -->
-
-<footer class="bg-[#061525] border-t border-[#263C50]">
-
-    <div class="max-w-7xl mx-auto px-8 pt-14 pb-10">
-
-        <div class="grid grid-cols-4 gap-12">
-
-            <!-- Brand Section -->
-
-            <div>
-
-                <div class="flex items-center gap-3 mb-5">
-
-                    <img
-                        src="images/logo.png"
-                        alt="World Explorer Logo"
-                        class="w-11 h-11 object-contain"
-                    >
-
-                    <h2 class="text-2xl font-bold text-white font-['Poppins']">
-                        World <span class="text-[#38BDF8]">Explorer</span>
-                    </h2>
-
-                </div>
-
-                <p class="text-[#94A3B8] text-sm leading-7 mb-6">
-                    Discover the beauty of our planet. Explore countries,
-                    learn about cultures, and uncover interesting facts
-                    about every corner of the world.
-                </p>
-
-                <div class="flex items-center gap-3">
-
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- Quick Links -->
-
-            <div>
-
-                <h3 class="text-lg font-bold text-white mb-6">
-                    Quick Links
-                </h3>
-
-                <ul class="space-y-4 text-sm text-[#94A3B8]">
-
-                    <li>
-                        <a href="#" class="hover:text-[#38BDF8] transition duration-300">
-                            Home
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
-                            Explore Countries
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#continents" class="hover:text-[#38BDF8] transition duration-300">
-                            Continents
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#about" class="hover:text-[#38BDF8] transition duration-300">
-                            About Us
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- Explore -->
-
-            <div>
-
-                <h3 class="text-lg font-bold text-white mb-6">
-                    Explore More
-                </h3>
-
-                <ul class="space-y-4 text-sm text-[#94A3B8]">
-
-                    <li>
-                        <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
-                            All Countries
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
-                            Popular Destinations
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#continents" class="hover:text-[#38BDF8] transition duration-300">
-                            World Continents
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
-                            Discover Nations
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- Contact Section -->
-
-            <div>
-
-                <h3 class="text-lg font-bold text-white mb-6">
-                    Stay Connected
-                </h3>
-
-                <p class="text-sm text-[#94A3B8] leading-7 mb-5">
-                    Keep exploring and learning something new about
-                    our amazing world every day.
-                </p>
-
-                <div class="bg-[#12304A] border border-[#263C50] rounded-xl p-4">
-
-                    <div class="flex items-center gap-3 mb-3">
-
-                        <i class="fa-solid fa-earth-americas text-2xl text-[#38BDF8]"></i>
-
-                        <span class="text-white font-semibold">
-                            Explore Without Limits
-                        </span>
-
-                    </div>
-
-                    <p class="text-xs text-[#94A3B8] leading-6">
-                        One planet. Seven continents. Countless discoveries.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- Footer Bottom -->
-
-        <div class="border-t border-[#263C50] mt-12 pt-7 flex items-center justify-between">
-
-            <p class="text-sm text-[#94A3B8]">
-                © 2026 <span class="text-[#38BDF8] font-semibold">World Explorer</span>.
-                All Rights Reserved.
-            </p>
-
-            <p class="text-sm text-[#94A3B8]">
-                Made with <span class="text-rose-500">♥</span> for curious minds.
-            </p>
-
-            <a href="#" class="text-sm text-[#38BDF8] hover:text-white transition duration-300">
-                Back to Top ↑
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-
     <!-- Country Details -->
 
     <div id="country_details" class="hidden"></div>
 
 
-    <!-- JavaScript -->
+    <!-- Footer -->
+
+    <footer class="bg-[#061525] border-t border-[#263C50]">
+
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-10 sm:pt-14 pb-8 sm:pb-10">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8 lg:gap-12">
+
+
+                <!-- Brand Section -->
+
+                <div>
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <img
+                            src="images/logo.png"
+                            alt="World Explorer Logo"
+                            class="w-11 h-11 object-contain"
+                        >
+
+                        <h2 class="text-xl sm:text-2xl font-bold text-white font-['Poppins']">
+                            World <span class="text-[#38BDF8]">Explorer</span>
+                        </h2>
+
+                    </div>
+
+                    <p class="text-[#94A3B8] text-sm leading-7 mb-6">
+                        Discover the beauty of our planet. Explore countries,
+                        learn about cultures, and uncover interesting facts
+                        about every corner of the world.
+                    </p>
+
+                    <div class="flex items-center gap-3">
+
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#12304A] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-[#071A2F] transition duration-300">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Links -->
+
+                <div>
+
+                    <h3 class="text-lg font-bold text-white mb-6">
+                        Quick Links
+                    </h3>
+
+                    <ul class="space-y-4 text-sm text-[#94A3B8]">
+
+                        <li>
+                            <a href="#" class="hover:text-[#38BDF8] transition duration-300">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
+                                Explore Countries
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#continents" class="hover:text-[#38BDF8] transition duration-300">
+                                Continents
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#about" class="hover:text-[#38BDF8] transition duration-300">
+                                About Us
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Explore -->
+
+                <div>
+
+                    <h3 class="text-lg font-bold text-white mb-6">
+                        Explore More
+                    </h3>
+
+                    <ul class="space-y-4 text-sm text-[#94A3B8]">
+
+                        <li>
+                            <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
+                                All Countries
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
+                                Popular Destinations
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#continents" class="hover:text-[#38BDF8] transition duration-300">
+                                World Continents
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#API_data" class="hover:text-[#38BDF8] transition duration-300">
+                                Discover Nations
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Contact Section -->
+
+                <div>
+
+                    <h3 class="text-lg font-bold text-white mb-6">
+                        Stay Connected
+                    </h3>
+
+                    <p class="text-sm text-[#94A3B8] leading-7 mb-5">
+                        Keep exploring and learning something new about
+                        our amazing world every day.
+                    </p>
+
+                    <div class="bg-[#12304A] border border-[#263C50] rounded-xl p-4">
+
+                        <div class="flex items-center gap-3 mb-3">
+
+                            <i class="fa-solid fa-earth-americas text-2xl text-[#38BDF8]"></i>
+
+                            <span class="text-white font-semibold">
+                                Explore Without Limits
+                            </span>
+
+                        </div>
+
+                        <p class="text-xs text-[#94A3B8] leading-6">
+                            One planet. Seven continents. Countless discoveries.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer Bottom -->
+
+            <div class="border-t border-[#263C50] mt-10 sm:mt-12 pt-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+
+                <p class="text-xs sm:text-sm text-[#94A3B8]">
+                    © 2026 <span class="text-[#38BDF8] font-semibold">World Explorer</span>.
+                    All Rights Reserved.
+                </p>
+
+                <p class="text-xs sm:text-sm text-[#94A3B8]">
+                    Made with <span class="text-rose-500">♥</span> for curious minds.
+                </p>
+
+                <a href="#" class="text-xs sm:text-sm text-[#38BDF8] hover:text-white transition duration-300">
+                    Back to Top ↑
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript File -->
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -50,10 +50,10 @@ function showSkeleton() {
         const div = document.createElement("div");
 
         div.className =
-            "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm p-6";
+            "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm p-4 sm:p-6";
 
         div.innerHTML = `
-            <div class="h-56 bg-slate-200 animate-pulse rounded-lg mb-6"></div>
+            <div class="h-40 sm:h-56 bg-slate-200 animate-pulse rounded-lg mb-5 sm:mb-6"></div>
             <div class="h-4 w-1/3 bg-slate-200 animate-pulse rounded mb-4"></div>
             <div class="h-7 w-3/4 bg-slate-200 animate-pulse rounded mb-4"></div>
             <div class="h-4 w-full bg-slate-200 animate-pulse rounded mb-3"></div>
@@ -79,7 +79,7 @@ function displayCountries(countryList, container = API_data) {
     if (countryList.length === 0) {
 
         container.innerHTML = `
-            <div class="col-span-3 text-center py-12">
+            <div class="col-span-full text-center py-10 sm:py-12 px-4">
 
                 <h2 class="text-2xl font-bold text-[#071A2F]">
                     ${container === favoritesData
@@ -123,7 +123,7 @@ function displayCountries(countryList, container = API_data) {
 
         div.innerHTML = `
 
-            <div class="h-56 overflow-hidden relative">
+            <div class="h-44 sm:h-56 overflow-hidden relative">
 
                 <img
                     src="${country.flag?.url_svg || ""}"
@@ -140,7 +140,7 @@ function displayCountries(countryList, container = API_data) {
 
             </div>
 
-            <div class="p-6">
+            <div class="p-4 sm:p-6">
 
                 <div class="flex items-center justify-between mb-3">
 
@@ -154,11 +154,11 @@ function displayCountries(countryList, container = API_data) {
 
                 </div>
 
-                <h3 class="text-2xl font-bold text-[#071A2F] mb-3">
+                <h3 class="text-xl sm:text-2xl font-bold text-[#071A2F] mb-3 break-words">
                     ${country.names?.common || "Unknown Country"}
                 </h3>
 
-                <p class="text-base leading-7 text-slate-600 mb-5">
+                <p class="text-sm sm:text-base leading-7 text-slate-600 mb-5">
                     Population:
                     ${
                         country.population != null
@@ -240,7 +240,6 @@ function displayCountries(countryList, container = API_data) {
 
 }
 
-
 // Display Favorite Countries
 
 function displayFavorites() {
@@ -278,6 +277,9 @@ function showCountryDetails(country) {
     // Show Details Container
 
     detailsContainer.classList.remove("hidden");
+
+    const mainFooter = document.querySelector("body > footer");
+    if (mainFooter) mainFooter.classList.add("hidden");
 
 
     // Get Country Information
@@ -356,9 +358,9 @@ function showCountryDetails(country) {
 
     detailsContainer.innerHTML = `
 
-        <section class="w-full min-h-screen bg-[#F1F7FC] py-8">
+        <section class="w-full min-h-screen bg-[#F1F7FC] py-6 sm:py-8">
 
-            <div class="max-w-6xl mx-auto px-6">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
                 <!-- Back Button -->
 
@@ -374,25 +376,25 @@ function showCountryDetails(country) {
 
                 <!-- Country Header -->
 
-                <div class="bg-[#071A2F] rounded-2xl p-6 flex items-center gap-8 mb-7">
+                <div class="bg-[#071A2F] rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-5 sm:gap-8 mb-7">
 
                     <img
                         src="${flag}"
                         alt="${countryName} Flag"
-                        class="w-56 h-36 object-cover rounded-xl"
+                        class="w-full sm:w-56 h-48 sm:h-36 object-cover rounded-xl"
                     >
 
-                    <div>
+                    <div class="w-full min-w-0 text-center sm:text-left">
 
                         <p class="text-[#38BDF8] tracking-[4px] text-xs font-semibold mb-3">
                             COUNTRY PROFILE
                         </p>
 
-                        <h1 class="text-4xl font-bold text-white font-['Poppins'] mb-2">
+                        <h1 class="text-2xl sm:text-4xl font-bold text-white font-['Poppins'] mb-2 break-words">
                             ${countryName}
                         </h1>
 
-                        <p class="text-gray-400 text-base mb-4">
+                        <p class="text-gray-400 text-sm sm:text-base mb-4 break-words">
                             ${officialName}
                         </p>
 
@@ -418,81 +420,108 @@ function showCountryDetails(country) {
                     </h2>
 
 
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
 
-                        <div class="bg-white p-5 rounded-xl border border-[#D6E3EF]">
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
                             <i class="fa-solid fa-landmark text-[#0284C7] text-lg mb-3"></i>
 
                             <p class="text-gray-500 text-sm mb-2">Capital</p>
 
-                            <h3 class="text-lg font-bold text-[#071A2F]">
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
                                 ${capital}
                             </h3>
 
                         </div>
 
 
-                        <div class="bg-white p-5 rounded-xl border border-[#D6E3EF]">
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
                             <i class="fa-solid fa-users text-[#0284C7] text-lg mb-3"></i>
 
                             <p class="text-gray-500 text-sm mb-2">Population</p>
 
-                            <h3 class="text-lg font-bold text-[#071A2F]">
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
                                 ${population}
                             </h3>
 
                         </div>
 
 
-                        <div class="bg-white p-5 rounded-xl border border-[#D6E3EF]">
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
                             <i class="fa-solid fa-ruler-combined text-[#0284C7] text-lg mb-3"></i>
 
                             <p class="text-gray-500 text-sm mb-2">Area</p>
 
-                            <h3 class="text-lg font-bold text-[#071A2F]">
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
                                 ${area}
                             </h3>
 
                         </div>
 
 
-                        <div class="bg-white p-5 rounded-xl border border-[#D6E3EF]">
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
                             <i class="fa-solid fa-globe text-[#0284C7] text-lg mb-3"></i>
 
                             <p class="text-gray-500 text-sm mb-2">Region</p>
 
-                            <h3 class="text-lg font-bold text-[#071A2F]">
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
                                 ${country.region || "Not Available"}
                             </h3>
 
                         </div>
 
 
-                        <div class="bg-white p-5 rounded-xl border border-[#D6E3EF]">
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
-                            <i class="fa-solid fa-map-location-dot text-[#0284C7] text-lg mb-3"></i>
+                            <i class="fa-solid fa-language text-[#0284C7] text-lg mb-3"></i>
+
+                            <p class="text-gray-500 text-sm mb-2">Languages</p>
+
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                                ${languages}
+                            </h3>
+
+                        </div>
+
+
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
+
+                            <i class="fa-solid fa-money-bill-wave text-[#0284C7] text-lg mb-3"></i>
+
+                            <p class="text-gray-500 text-sm mb-2">Currencies</p>
+
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                                ${currencies}
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                                            <i class="fa-solid fa-map-location-dot text-[#0284C7] text-lg mb-3"></i>
 
                             <p class="text-gray-500 text-sm mb-2">Subregion</p>
 
-                            <h3 class="text-lg font-bold text-[#071A2F]">
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
                                 ${country.subregion || "Not Available"}
                             </h3>
 
                         </div>
 
 
-                        <div class="bg-white p-5 rounded-xl border border-[#D6E3EF]">
+                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
                             <i class="fa-solid fa-code text-[#0284C7] text-lg mb-3"></i>
 
                             <p class="text-gray-500 text-sm mb-2">Country Code</p>
 
-                            <h3 class="text-lg font-bold text-[#071A2F]">
+                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
                                 ${country.cca2 || country.code || "Not Available"}
                             </h3>
 
@@ -506,12 +535,12 @@ function showCountryDetails(country) {
 
                 <!-- General Details and Geography -->
 
-                <div class="grid grid-cols-2 gap-5 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
 
 
                     <!-- General Details -->
 
-                    <div class="bg-white border border-[#D6E3EF] rounded-2xl p-6">
+                    <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
 
                         <h2 class="text-xl font-bold text-[#071A2F] mb-5">
 
@@ -525,55 +554,55 @@ function showCountryDetails(country) {
                         <div class="space-y-4">
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Native Name</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm">
+                                <span class="font-semibold text-[#071A2F] text-sm break-words">
                                     ${nativeName}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Languages</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm text-right">
+                                <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
                                     ${languages}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Currency</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm text-right">
+                                <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
                                     ${currencies}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Driving Side</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm">
+                                <span class="font-semibold text-[#071A2F] text-sm break-words">
                                     ${country.drivingSide || country.car?.side || "Not Available"}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
 
                                 <span class="text-gray-500 text-sm">Start of Week</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm">
+                                <span class="font-semibold text-[#071A2F] text-sm break-words">
                                     ${country.startOfWeek || "Not Available"}
                                 </span>
 
@@ -588,7 +617,7 @@ function showCountryDetails(country) {
 
                     <!-- Geography -->
 
-                    <div class="bg-white border border-[#D6E3EF] rounded-2xl p-6">
+                    <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
 
                         <h2 class="text-xl font-bold text-[#071A2F] mb-5">
 
@@ -602,44 +631,44 @@ function showCountryDetails(country) {
                         <div class="space-y-4">
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Continent</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm">
+                                <span class="font-semibold text-[#071A2F] text-sm break-words">
                                     ${country.continents?.join(", ") || "Not Available"}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Latitude</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm">
+                                <span class="font-semibold text-[#071A2F] text-sm break-words">
                                     ${coordinates[0] ?? "Not Available"}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between border-b border-slate-200 pb-3">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Longitude</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm">
+                                <span class="font-semibold text-[#071A2F] text-sm break-words">
                                     ${coordinates[1] ?? "Not Available"}
                                 </span>
 
                             </div>
 
 
-                            <div class="flex justify-between">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
 
                                 <span class="text-gray-500 text-sm">Timezones</span>
 
-                                <span class="font-semibold text-[#071A2F] text-sm text-right">
+                                <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
                                     ${country.timezones?.join(", ") || "Not Available"}
                                 </span>
 
@@ -657,7 +686,7 @@ function showCountryDetails(country) {
 
                 <!-- Border Countries -->
 
-                <div class="bg-white border border-[#D6E3EF] rounded-2xl p-6">
+                <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
 
                     <p class="text-[#0284C7] text-xs tracking-[4px] font-semibold mb-2">
                         NEIGHBORING NATIONS
@@ -707,11 +736,15 @@ function showCountryDetails(country) {
 
         detailsContainer.classList.add("hidden");
 
+        const mainFooter = document.querySelector("body > footer");
+        if (mainFooter) mainFooter.classList.remove("hidden");
+
         document.querySelectorAll("body > header, body > section").forEach((element) => {
 
             element.classList.remove("hidden");
 
         });
+
 
         window.scrollTo({
             top: 0,
@@ -746,7 +779,7 @@ async function apiHandler() {
             {
                 headers: {
 
-                     "Authorization": "Bearer rc_live_cbafff3a94e448d0869bca1df9639ba7"
+                    "Authorization": "Bearer rc_live_cbafff3a94e448d0869bca1df9639ba7"
 
                 }
             }
@@ -793,7 +826,7 @@ async function apiHandler() {
 
             API_data.innerHTML = `
 
-            <div class="col-span-3 flex flex-col items-center justify-center text-center bg-white border border-slate-200 rounded-2xl px-8 py-14 shadow-sm">
+            <div class="col-span-full flex flex-col items-center justify-center text-center bg-white border border-slate-200 rounded-2xl px-4 sm:px-8 py-10 sm:py-14 shadow-sm">
 
                 <div class="w-20 h-20 flex items-center justify-center rounded-full bg-sky-50 border border-sky-100 mb-6">
 
@@ -802,7 +835,7 @@ async function apiHandler() {
                 </div>
 
 
-                <h2 class="text-2xl font-bold text-[#071A2F] mb-3">
+                <h2 class="text-xl sm:text-2xl font-bold text-[#071A2F] mb-3 break-words">
                     Oops! Lost Connection
                 </h2>
 
@@ -897,3 +930,19 @@ if (searchBtn && searchInput) {
 // Call API
 
 apiHandler();
+
+
+// Mobile Navigation
+
+const menuBtn = document.querySelector("#menu_btn");
+const mobileNav = document.querySelector("#mobile_nav");
+
+if (menuBtn && mobileNav) {
+
+    menuBtn.addEventListener("click", function () {
+
+        mobileNav.classList.toggle("hidden");
+
+    });
+
+}
