@@ -248,6 +248,59 @@
             </p>
 
 
+            <!-- Filter and Sort Section -->
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+
+                <!-- Region Filter -->
+
+                <div class="w-full sm:w-1/2">
+
+                    <label for="region_filter" class="block text-sm font-semibold text-[#071A2F] mb-2">
+                        Filter by Region
+                    </label>
+
+                    <select
+                        id="region_filter"
+                        class="w-full bg-white border border-[#D6E3EF] rounded-lg px-4 py-3 text-sm text-[#071A2F] outline-none focus:border-[#0284C7] transition duration-300">
+
+                        <option value="all">All Regions</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Americas">Americas</option>
+                        <option value="Oceania">Oceania</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Sort By -->
+
+                <div class="w-full sm:w-1/2">
+
+                    <label for="sort_filter" class="block text-sm font-semibold text-[#071A2F] mb-2">
+                        Sort Countries
+                    </label>
+
+                    <select
+                        id="sort_filter"
+                        class="w-full bg-white border border-[#D6E3EF] rounded-lg px-4 py-3 text-sm text-[#071A2F] outline-none focus:border-[#0284C7] transition duration-300">
+
+                        <option value="default">Default Order</option>
+                        <option value="population-high">Population: High to Low</option>
+                        <option value="population-low">Population: Low to High</option>
+                        <option value="area-high">Area: Large to Small</option>
+                        <option value="area-low">Area: Small to Large</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
             <div
                 id="country_skeleton"
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 max-w-7xl mx-auto mt-8 sm:mt-10"

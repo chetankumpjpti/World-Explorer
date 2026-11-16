@@ -34,6 +34,9 @@ const favoritesData = document.querySelector("#favorites_data");
 
 const favoriteCount = document.querySelector("#favorite_count");
 
+const regionFilter = document.querySelector("#region_filter");
+const sortFilter = document.querySelector("#sort_filter");
+
 let countries = [];
 
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -362,349 +365,257 @@ function showCountryDetails(country) {
 
     // Create Country Details HTML
 
-    detailsContainer.innerHTML = `
+detailsContainer.innerHTML = `
 
-        <section class="w-full min-h-screen bg-[#F1F7FC] py-6 sm:py-8">
+    <section class="w-full min-h-screen bg-[#F1F7FC] py-6 sm:py-8">
 
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-                <!-- Back Button -->
+            <!-- Back Button -->
 
-                <button id="back_btn"
-                    class="mb-6 bg-[#071A2F] text-white px-5 py-2.5 rounded-lg hover:bg-sky-600 transition duration-300">
+            <button id="back_btn"
+                class="mb-6 bg-[#071A2F] text-white px-5 py-2.5 rounded-lg hover:bg-sky-600 transition duration-300">
 
-                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                <i class="fa-solid fa-arrow-left mr-2"></i>
 
-                    Back to Explore
+                Back to Explore
 
-                </button>
-
-
-                <!-- Country Header -->
-
-                <div class="bg-[#071A2F] rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-5 sm:gap-8 mb-7">
-
-                    <img
-                        src="${flag}"
-                        alt="${countryName} Flag"
-                        class="w-full sm:w-56 h-48 sm:h-36 object-cover rounded-xl"
-                    >
-
-                    <div class="w-full min-w-0 text-center sm:text-left">
-
-                        <p class="text-[#38BDF8] tracking-[4px] text-xs font-semibold mb-3">
-                            COUNTRY PROFILE
-                        </p>
-
-                        <h1 class="text-2xl sm:text-4xl font-bold text-white font-['Poppins'] mb-2 break-words">
-                            ${countryName}
-                        </h1>
-
-                        <p class="text-gray-400 text-sm sm:text-base mb-4 break-words">
-                            ${officialName}
-                        </p>
-
-                        <span class="bg-[#12304A] text-[#38BDF8] px-4 py-2 rounded-full text-sm">
-                            ${country.region || "Not Available"}
-                        </span>
-
-                    </div>
-
-                </div>
+            </button>
 
 
-                <!-- Basic Information -->
+            <!-- Country Header -->
 
-                <div class="mb-8">
+            <div class="bg-[#071A2F] rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-5 sm:gap-8 mb-7">
 
-                    <p class="text-[#0284C7] text-xs tracking-[4px] font-semibold mb-2">
-                        COUNTRY OVERVIEW
+                <img
+                    src="${flag}"
+                    alt="${countryName} Flag"
+                    class="w-full sm:w-56 h-48 sm:h-36 object-cover rounded-xl"
+                >
+
+                <div class="w-full min-w-0 text-center sm:text-left">
+
+                    <p class="text-[#38BDF8] tracking-[4px] text-xs font-semibold mb-3">
+                        COUNTRY PROFILE
                     </p>
 
-                    <h2 class="text-2xl font-bold text-[#071A2F] mb-5 font-['Poppins']">
-                        Basic Information
-                    </h2>
+                    <h1 class="text-2xl sm:text-4xl font-bold text-white font-['Poppins'] mb-2 break-words">
+                        ${countryName}
+                    </h1>
 
+                    <p class="text-gray-400 text-sm sm:text-base mb-4 break-words">
+                        ${officialName}
+                    </p>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
-
-                            <i class="fa-solid fa-landmark text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Capital</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${capital}
-                            </h3>
-
-                        </div>
-
-
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
-
-                            <i class="fa-solid fa-users text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Population</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${population}
-                            </h3>
-
-                        </div>
-
-
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
-
-                            <i class="fa-solid fa-ruler-combined text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Area</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${area}
-                            </h3>
-
-                        </div>
-
-
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
-
-                            <i class="fa-solid fa-globe text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Region</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${country.region || "Not Available"}
-                            </h3>
-
-                        </div>
-
-
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
-
-                            <i class="fa-solid fa-language text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Languages</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${languages}
-                            </h3>
-
-                        </div>
-
-
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
-
-                            <i class="fa-solid fa-money-bill-wave text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Currencies</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${currencies}
-                            </h3>
-
-                        </div>
-
-                    </div>
+                    <span class="bg-[#12304A] text-[#38BDF8] px-4 py-2 rounded-full text-sm">
+                        ${country.region || "Not Available"}
+                    </span>
 
                 </div>
 
-                                            <i class="fa-solid fa-map-location-dot text-[#0284C7] text-lg mb-3"></i>
-
-                            <p class="text-gray-500 text-sm mb-2">Subregion</p>
-
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${country.subregion || "Not Available"}
-                            </h3>
-
-                        </div>
+            </div>
 
 
-                        <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
+            <!-- Basic Information -->
 
-                            <i class="fa-solid fa-code text-[#0284C7] text-lg mb-3"></i>
+            <div class="mb-8">
 
-                            <p class="text-gray-500 text-sm mb-2">Country Code</p>
+                <p class="text-[#0284C7] text-xs tracking-[4px] font-semibold mb-2">
+                    COUNTRY OVERVIEW
+                </p>
 
-                            <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
-                                ${country.cca2 || country.code || "Not Available"}
-                            </h3>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
+                <h2 class="text-2xl font-bold text-[#071A2F] mb-5 font-['Poppins']">
+                    Basic Information
+                </h2>
 
 
-                <!-- General Details and Geography -->
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
 
-                    <!-- General Details -->
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
-                    <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
+                        <i class="fa-solid fa-landmark text-[#0284C7] text-lg mb-3"></i>
 
-                        <h2 class="text-xl font-bold text-[#071A2F] mb-5">
+                        <p class="text-gray-500 text-sm mb-2">Capital</p>
 
-                            <i class="fa-solid fa-circle-info text-[#0284C7] mr-2"></i>
-
-                            General Details
-
-                        </h2>
-
-
-                        <div class="space-y-4">
-
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
-
-                                <span class="text-gray-500 text-sm">Native Name</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm break-words">
-                                    ${nativeName}
-                                </span>
-
-                            </div>
-
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
-
-                                <span class="text-gray-500 text-sm">Languages</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
-                                    ${languages}
-                                </span>
-
-                            </div>
-
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
-
-                                <span class="text-gray-500 text-sm">Currency</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
-                                    ${currencies}
-                                </span>
-
-                            </div>
-
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
-
-                                <span class="text-gray-500 text-sm">Driving Side</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm break-words">
-                                    ${country.drivingSide || country.car?.side || "Not Available"}
-                                </span>
-
-                            </div>
-
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
-
-                                <span class="text-gray-500 text-sm">Start of Week</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm break-words">
-                                    ${country.startOfWeek || "Not Available"}
-                                </span>
-
-                            </div>
-
-
-                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${capital}
+                        </h3>
 
                     </div>
 
 
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
-                    <!-- Geography -->
+                        <i class="fa-solid fa-users text-[#0284C7] text-lg mb-3"></i>
 
-                    <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
+                        <p class="text-gray-500 text-sm mb-2">Population</p>
 
-                        <h2 class="text-xl font-bold text-[#071A2F] mb-5">
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${population}
+                        </h3>
 
-                            <i class="fa-solid fa-earth-asia text-[#0284C7] mr-2"></i>
-
-                            Geography
-
-                        </h2>
-
-
-                        <div class="space-y-4">
+                    </div>
 
 
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
-                                <span class="text-gray-500 text-sm">Continent</span>
+                        <i class="fa-solid fa-ruler-combined text-[#0284C7] text-lg mb-3"></i>
 
-                                <span class="font-semibold text-[#071A2F] text-sm break-words">
-                                    ${country.continents?.join(", ") || "Not Available"}
-                                </span>
+                        <p class="text-gray-500 text-sm mb-2">Area</p>
 
-                            </div>
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${area}
+                        </h3>
 
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
-
-                                <span class="text-gray-500 text-sm">Latitude</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm break-words">
-                                    ${coordinates[0] ?? "Not Available"}
-                                </span>
-
-                            </div>
+                    </div>
 
 
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
 
-                                <span class="text-gray-500 text-sm">Longitude</span>
+                        <i class="fa-solid fa-globe text-[#0284C7] text-lg mb-3"></i>
 
-                                <span class="font-semibold text-[#071A2F] text-sm break-words">
-                                    ${coordinates[1] ?? "Not Available"}
-                                </span>
+                        <p class="text-gray-500 text-sm mb-2">Region</p>
 
-                            </div>
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${country.region || "Not Available"}
+                        </h3>
 
-
-                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
-
-                                <span class="text-gray-500 text-sm">Timezones</span>
-
-                                <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
-                                    ${country.timezones?.join(", ") || "Not Available"}
-                                </span>
-
-                            </div>
+                    </div>
 
 
-                        </div>
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
+
+                        <i class="fa-solid fa-language text-[#0284C7] text-lg mb-3"></i>
+
+                        <p class="text-gray-500 text-sm mb-2">Languages</p>
+
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${languages}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
+
+                        <i class="fa-solid fa-money-bill-wave text-[#0284C7] text-lg mb-3"></i>
+
+                        <p class="text-gray-500 text-sm mb-2">Currencies</p>
+
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${currencies}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
+
+                        <i class="fa-solid fa-map-location-dot text-[#0284C7] text-lg mb-3"></i>
+
+                        <p class="text-gray-500 text-sm mb-2">Subregion</p>
+
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${country.subregion || "Not Available"}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF] min-w-0">
+
+                        <i class="fa-solid fa-code text-[#0284C7] text-lg mb-3"></i>
+
+                        <p class="text-gray-500 text-sm mb-2">Country Code</p>
+
+                        <h3 class="text-base sm:text-lg font-bold text-[#071A2F] break-words">
+                            ${country.cca2 || country.code || "Not Available"}
+                        </h3>
 
                     </div>
 
 
                 </div>
 
+            </div>
 
 
-                <!-- Border Countries -->
+            <!-- General Details and Geography -->
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
+
+
+                <!-- General Details -->
 
                 <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
 
-                    <p class="text-[#0284C7] text-xs tracking-[4px] font-semibold mb-2">
-                        NEIGHBORING NATIONS
-                    </p>
+                    <h2 class="text-xl font-bold text-[#071A2F] mb-5">
 
-                    <h2 class="text-2xl font-bold text-[#071A2F] mb-5">
-                        Border Countries
+                        <i class="fa-solid fa-circle-info text-[#0284C7] mr-2"></i>
+
+                        General Details
+
                     </h2>
 
-                    <div class="flex flex-wrap gap-3">
 
-                        ${borderHTML}
+                    <div class="space-y-4">
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Native Name</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm break-words">
+                                ${nativeName}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Languages</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
+                                ${languages}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Currency</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
+                                ${currencies}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Driving Side</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm break-words">
+                                ${country.drivingSide || country.car?.side || "Not Available"}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
+
+                            <span class="text-gray-500 text-sm">Start of Week</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm break-words">
+                                ${country.startOfWeek || "Not Available"}
+                            </span>
+
+                        </div>
+
 
                     </div>
 
@@ -712,26 +623,118 @@ function showCountryDetails(country) {
 
 
 
-                <!-- Footer -->
+                <!-- Geography -->
 
-                <footer class="text-center py-7">
+                <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
 
-                    <h2 class="text-lg font-bold text-[#0284C7] mb-2">
-                        🌍 World Explorer
+                    <h2 class="text-xl font-bold text-[#071A2F] mb-5">
+
+                        <i class="fa-solid fa-earth-asia text-[#0284C7] mr-2"></i>
+
+                        Geography
+
                     </h2>
 
-                    <p class="text-sm text-gray-500">
-                        Explore the world, one country at a time.
-                    </p>
 
-                </footer>
+                    <div class="space-y-4">
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Continent</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm break-words">
+                                ${country.continents?.join(", ") || "Not Available"}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Latitude</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm break-words">
+                                ${coordinates[0] ?? "Not Available"}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-slate-200 pb-3">
+
+                            <span class="text-gray-500 text-sm">Longitude</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm break-words">
+                                ${coordinates[1] ?? "Not Available"}
+                            </span>
+
+                        </div>
+
+
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
+
+                            <span class="text-gray-500 text-sm">Timezones</span>
+
+                            <span class="font-semibold text-[#071A2F] text-sm text-right break-words">
+                                ${country.timezones?.join(", ") || "Not Available"}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
 
 
             </div>
 
-        </section>
 
-    `;
+
+            <!-- Border Countries -->
+
+            <div class="bg-white border border-[#D6E3EF] rounded-2xl p-4 sm:p-6">
+
+                <p class="text-[#0284C7] text-xs tracking-[4px] font-semibold mb-2">
+                    NEIGHBORING NATIONS
+                </p>
+
+                <h2 class="text-2xl font-bold text-[#071A2F] mb-5">
+                    Border Countries
+                </h2>
+
+                <div class="flex flex-wrap gap-3">
+
+                    ${borderHTML}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Footer -->
+
+            <footer class="text-center py-7">
+
+                <h2 class="text-lg font-bold text-[#0284C7] mb-2">
+                    🌍 World Explorer
+                </h2>
+
+                <p class="text-sm text-gray-500">
+                    Explore the world, one country at a time.
+                </p>
+
+            </footer>
+
+
+        </div>
+
+    </section>
+
+`;
+
 
 
     // Back Button
@@ -947,3 +950,96 @@ if (menuBtn && mobileNav) {
     });
 
 }
+
+// Search, Filter and Sort Countries
+
+function searchCountries() {
+
+    let filteredCountries = countries;
+
+    // Search Country
+
+    const searchValue = searchInput.value.toLowerCase().trim();
+
+    filteredCountries = filteredCountries.filter((country) => {
+
+        return country.names.common.toLowerCase().includes(searchValue);
+
+    });
+
+
+    // Filter by Region
+
+    const selectedRegion = regionFilter.value;
+
+    if (selectedRegion !== "all") {
+
+        filteredCountries = filteredCountries.filter((country) => {
+
+            return country.region === selectedRegion;
+
+        });
+
+    }
+
+
+    // Sort Countries
+
+    const selectedSort = sortFilter.value;
+
+    if (selectedSort === "population-high") {
+
+        filteredCountries.sort((a, b) => b.population - a.population);
+
+    }
+
+    else if (selectedSort === "population-low") {
+
+        filteredCountries.sort((a, b) => a.population - b.population);
+
+    }
+
+    else if (selectedSort === "area-high") {
+
+        filteredCountries.sort((a, b) => b.area - a.area);
+
+    }
+
+    else if (selectedSort === "area-low") {
+
+        filteredCountries.sort((a, b) => a.area - b.area);
+
+    }
+
+
+    // Display Countries
+
+    displayCountries(filteredCountries);
+
+}
+// Search Button
+
+searchBtn.addEventListener("click", searchCountries);
+
+
+// Search Enter Key
+
+searchInput.addEventListener("keyup", function(event) {
+
+    if (event.key === "Enter") {
+
+        searchCountries();
+
+    }
+
+});
+
+
+// Region Filter
+
+regionFilter.addEventListener("change", searchCountries);
+
+
+// Sort Filter
+
+sortFilter.addEventListener("change", searchCountries);
