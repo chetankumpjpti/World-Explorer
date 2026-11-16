@@ -32,6 +32,8 @@ const searchBtn = document.querySelector("#search_btn");
 const detailsContainer = document.querySelector("#country_details");
 const favoritesData = document.querySelector("#favorites_data");
 
+const favoriteCount = document.querySelector("#favorite_count");
+
 let countries = [];
 
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -41,30 +43,30 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 function showSkeleton() {
 
-    if (!skeletonContainer) return;
+    if (skeletonContainer) {
 
-    skeletonContainer.innerHTML = "";
+        skeletonContainer.innerHTML = "";
 
-    for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++) {
 
-        const div = document.createElement("div");
+            const div = document.createElement("div");
 
-        div.className =
-            "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm p-4 sm:p-6";
+            div.className =
+                "bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm p-4 sm:p-6";
 
-        div.innerHTML = `
-            <div class="h-40 sm:h-56 bg-slate-200 animate-pulse rounded-lg mb-5 sm:mb-6"></div>
-            <div class="h-4 w-1/3 bg-slate-200 animate-pulse rounded mb-4"></div>
-            <div class="h-7 w-3/4 bg-slate-200 animate-pulse rounded mb-4"></div>
-            <div class="h-4 w-full bg-slate-200 animate-pulse rounded mb-3"></div>
-            <div class="h-4 w-2/3 bg-slate-200 animate-pulse rounded mb-6"></div>
-            <div class="h-12 w-full bg-slate-200 animate-pulse rounded-xl"></div>
-        `;
+            div.innerHTML = `
+                <div class="h-40 sm:h-56 bg-slate-200 animate-pulse rounded-lg mb-5 sm:mb-6"></div>
+                <div class="h-4 w-1/3 bg-slate-200 animate-pulse rounded mb-4"></div>
+                <div class="h-7 w-3/4 bg-slate-200 animate-pulse rounded mb-4"></div>
+                <div class="h-4 w-full bg-slate-200 animate-pulse rounded mb-3"></div>
+                <div class="h-4 w-2/3 bg-slate-200 animate-pulse rounded mb-6"></div>
+                <div class="h-12 w-full bg-slate-200 animate-pulse rounded-xl"></div>
+            `;
 
-        skeletonContainer.append(div);
+            skeletonContainer.append(div);
 
+        }
     }
-
 }
 
 
@@ -196,6 +198,10 @@ function displayCountries(countryList, container = API_data) {
             }
 
             localStorage.setItem("favorites", JSON.stringify(favorites));
+            
+            if (favoriteCount) {
+                favoriteCount.textContent = favorites.length;
+            }
 
             if (favorites.includes(countryId)) {
 
@@ -729,35 +735,26 @@ function showCountryDetails(country) {
 
 
     // Back Button
+const backBtn = document.querySelector("#back_btn");
 
-    const backBtn = document.querySelector("#back_btn");
+backBtn.addEventListener("click", function () {
 
-    backBtn.addEventListener("click", function () {
+    detailsContainer.classList.add("hidden");
 
-        detailsContainer.classList.add("hidden");
+    const mainFooter = document.querySelector("body > footer");
+    if (mainFooter) mainFooter.classList.remove("hidden");
 
-        const mainFooter = document.querySelector("body > footer");
-        if (mainFooter) mainFooter.classList.remove("hidden");
+    document.querySelectorAll("body > header, body > section").forEach((element) => {
 
-        document.querySelectorAll("body > header, body > section").forEach((element) => {
-
-            element.classList.remove("hidden");
-
-        });
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        element.classList.remove("hidden");
 
     });
 
+    document.documentElement.scrollTop = 0;
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+});
+
+document.documentElement.scrollTop = 0;
 
 }
 
@@ -815,6 +812,10 @@ async function apiHandler() {
         }
 
         displayFavorites();
+
+        if (favoriteCount) {
+            favoriteCount.textContent = favorites.length;
+        }
 
 
     } catch (error) {
