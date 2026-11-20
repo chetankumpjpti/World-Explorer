@@ -334,6 +334,183 @@ function displayCountries(countryList, container = API_data) {
 }
 
 
+// CONTINENTS DATA
+
+const continentsData = document.querySelector("#continents_data");
+
+const continentCountries = document.querySelector("#continent_countries");
+
+const continents = [
+
+    {
+        name: "Asia",
+        region: "Asia",
+        description: "Explore the largest continent with diverse cultures and landscapes.",
+        image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800"
+    },
+
+    {
+        name: "Africa",
+        region: "Africa",
+        description: "Discover wildlife, deserts and beautiful natural landscapes.",
+        image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800"
+    },
+
+    {
+        name: "Europe",
+        region: "Europe",
+        description: "Explore historic cities, architecture and beautiful destinations.",
+        image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800"
+    },
+
+    {
+        name: "North America",
+        region: "North America",
+        description: "Discover mountains, forests and modern cities.",
+        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800"
+    },
+
+    {
+        name: "South America",
+        region: "South America",
+        description: "Explore the Amazon rainforest and Andes mountains.",
+        image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800"
+    },
+
+    {
+        name: "Oceania",
+        region: "Oceania",
+        description: "Discover beautiful islands, beaches and coral reefs.",
+        image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800"
+    },
+
+    {
+        name: "Antarctica",
+        region: "Antarctica",
+        description: "Explore the coldest continent covered with ice.",
+        image: "https://images.unsplash.com/photo-1517783999520-f068d7431a60?w=800"
+    }
+
+];
+
+
+// Get Countries by Continent
+
+function getContinentCountries(continentName) {
+
+    return countries.filter((country) => {
+
+        if (continentName === "North America") {
+
+            return country.region === "Americas" &&
+                ["Northern America", "Central America", "Caribbean"]
+                    .includes(country.subregion);
+
+        }
+
+        else if (continentName === "South America") {
+
+            return country.region === "Americas" &&
+                country.subregion === "South America";
+
+        }
+
+        else if (continentName === "Antarctica") {
+
+            return country.region === "Antarctic";
+
+        }
+
+        else {
+
+            return country.region === continentName;
+
+        }
+
+    });
+
+}
+
+
+// Display Continents
+
+function displayContinents() {
+
+    if (!continentsData) return;
+
+    continentsData.innerHTML = "";
+
+    continents.forEach((continent) => {
+
+        const filteredCountries = getContinentCountries(continent.region);
+
+        const div = document.createElement("div");
+
+        div.className =
+            "bg-white rounded-2xl overflow-hidden border border-[#D6E3EF] shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300";
+
+        div.innerHTML = `
+
+            <div class="h-52 overflow-hidden">
+
+                <img
+                    src="${continent.image}"
+                    alt="${continent.name}"
+                    class="w-full h-full object-cover hover:scale-110 transition duration-500"
+                >
+
+            </div>
+
+            <div class="p-6">
+
+                <h2 class="text-2xl font-bold text-[#071A2F]">
+                    ${continent.name}
+                </h2>
+
+                <p class="text-gray-500 h-[56px] text-sm leading-7 mt-3">
+                    ${continent.description}
+                </p>
+
+                <p class="text-[#0284C7] font-semibold mt-4">
+                    ${filteredCountries.length} Countries
+                </p>
+
+                <button
+                    type="button"
+                    class="explore_continent w-full mt-5 py-3 rounded-xl bg-[#071A2F] text-white font-semibold hover:bg-sky-600 transition"
+                >
+                    Explore Countries →
+                </button>
+
+            </div>
+
+        `;
+
+
+        // Explore Continent Button
+
+        const exploreButton = div.querySelector(".explore_continent");
+
+        exploreButton.addEventListener("click", function () {
+
+            if (!continentCountries) return;
+
+            displayCountries(filteredCountries, continentCountries);
+
+            continentCountries.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+
+        continentsData.append(div);
+
+    });
+
+}
+
+
 // Add Country to Compare
 
 function addToCompare(country) {
@@ -462,7 +639,6 @@ function showCountryDetails(country) {
 
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-
                 <!-- Back Button -->
 
                 <button id="back_btn"
@@ -522,7 +698,6 @@ function showCountryDetails(country) {
 
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
 
                         <div class="bg-white p-4 sm:p-5 rounded-xl border border-[#D6E3EF]">
 
@@ -627,7 +802,6 @@ function showCountryDetails(country) {
 
                         </div>
 
-
                     </div>
 
                 </div>
@@ -636,7 +810,6 @@ function showCountryDetails(country) {
                 <!-- General Details and Geography -->
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
-
 
                     <!-- General Details -->
 
@@ -727,7 +900,6 @@ function showCountryDetails(country) {
 
                         <div class="space-y-4">
 
-
                             <div class="flex justify-between gap-4 border-b border-slate-200 pb-3">
 
                                 <span class="text-gray-500 text-sm">Continent</span>
@@ -771,11 +943,9 @@ function showCountryDetails(country) {
 
                             </div>
 
-
                         </div>
 
                     </div>
-
 
                 </div>
 
@@ -1166,7 +1336,7 @@ async function apiHandler() {
     try {
 
         const response = await fetch(
-            "https://countries.dev/countries?fields=name,capital,region,population,flags"
+            "https://countries.dev/countries?fields=name,capital,region,subregion,population,flags"
         );
 
 
@@ -1201,6 +1371,11 @@ async function apiHandler() {
             displayCountries(countries);
 
         }
+
+
+        // Display Continents
+
+        displayContinents();
 
 
         // Display Favorites
